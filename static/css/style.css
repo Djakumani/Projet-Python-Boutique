@@ -83,7 +83,13 @@ main { flex: 1; }
     color: #111;
 }
 
-.logout-form { display: inline; }
+.logout-form {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-logout { line-height: 1; }
 
 .navbar-user {
     font-size: 11px;

@@ -25,7 +25,7 @@
                 </span>
                 <form method="post" action="{% url 'logout' %}" class="logout-form">
                     {% csrf_token %}
-                    <button type="submit">Déconnexion</button>
+                    <button type="submit" class="navbar-logout">Déconnexion</button>
                 </form>
             {% else %}
                 <a href="{% url 'login' %}">Connexion</a>

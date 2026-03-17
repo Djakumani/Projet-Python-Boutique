@@ -52,18 +52,6 @@
         th {
             background: #f3f4f6;
         }
-        .placeholder {
-            border: 2px dashed #9ca3af;
-            border-radius: 12px;
-            min-height: 220px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #f9fafb;
-            color: #6b7280;
-            font-weight: 600;
-            margin-top: 12px;
-        }
         .meta {
             color: #4b5563;
         }
@@ -72,6 +60,25 @@
             padding: 14px 16px;
             background: #eff6ff;
             border-left: 4px solid #2563eb;
+        }
+        .capture-grid {
+            display: grid;
+            gap: 24px;
+            margin-top: 16px;
+        }
+        figure {
+            margin: 0;
+        }
+        figure img {
+            width: 100%;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        }
+        figcaption {
+            margin-top: 8px;
+            color: #4b5563;
+            font-size: 14px;
         }
         @media print {
             body {
@@ -83,31 +90,34 @@
                 max-width: none;
                 padding: 0;
             }
+            figure img {
+                box-shadow: none;
+            }
         }
     </style>
 </head>
 <body>
     <div class="page">
         <h1>Rapport du projet Django de vente en ligne</h1>
-        <p class="meta">Cours : Management des données et innovation</p>
-        <p class="meta">Projet : Boutique en ligne de vêtements avec Django et SQLite</p>
+        <p class="meta">Cours : Management des donn&eacute;es et innovation</p>
+        <p class="meta">Projet : Boutique en ligne de v&ecirc;tements avec Django et SQLite</p>
 
         <h2>1. Objectif du projet</h2>
         <p>
-            Le but du projet est de développer un site de vente en ligne avec Django. Le site distingue
-            deux types d’utilisateurs : les administrateurs et les clients.
+            Le but du projet est de d&eacute;velopper un site de vente en ligne avec Django. Le site distingue
+            deux types d&rsquo;utilisateurs : les administrateurs et les clients.
         </p>
 
-        <h2>2. Fonctionnalités réalisées</h2>
+        <h2>2. Fonctionnalit&eacute;s r&eacute;alis&eacute;es</h2>
         <ul>
-            <li>Catalogue des articles avec nom, représentation, stock, prix et catégories.</li>
+            <li>Catalogue des articles avec nom, repr&eacute;sentation, stock, prix et cat&eacute;gories.</li>
             <li>Connexion et inscription des clients.</li>
-            <li>Achat d’une quantité donnée avec mise à jour automatique du stock.</li>
+            <li>Achat d&rsquo;une quantit&eacute; donn&eacute;e avec mise &agrave; jour automatique du stock.</li>
             <li>Gestion administrateur : ajout, modification et suppression des articles.</li>
-            <li>Affichage d’images statiques pour les produits quand une image est disponible.</li>
+            <li>Affichage d&rsquo;images statiques pour les produits quand une image est disponible.</li>
         </ul>
 
-        <h2>3. Répartition du travail</h2>
+        <h2>3. R&eacute;partition du travail</h2>
         <table>
             <thead>
                 <tr>
@@ -118,61 +128,73 @@
             <tbody>
                 <tr>
                     <td>Zeinabou</td>
-                    <td>Initialisation du projet Django, configuration générale, intégration finale des contributions et vérifications.</td>
+                    <td>Initialisation du projet Django, configuration g&eacute;n&eacute;rale, int&eacute;gration finale des contributions et v&eacute;rifications.</td>
                 </tr>
                 <tr>
                     <td>Assia</td>
-                    <td>Modèle Article, base de données, catégories, administration et structure des données.</td>
+                    <td>Mod&egrave;le Article, base de donn&eacute;es, cat&eacute;gories, administration et structure des donn&eacute;es.</td>
                 </tr>
                 <tr>
                     <td>Awa</td>
-                    <td>Logique d’achat, contrôle du stock, formulaires et vues backend.</td>
+                    <td>Logique d&rsquo;achat, contr&ocirc;le du stock, formulaires et vues backend.</td>
                 </tr>
                 <tr>
                     <td>Alexis</td>
                     <td>Templates HTML, CSS, JavaScript, interface de navigation et rendu visuel.</td>
                 </tr>
                 <tr>
-                    <td>Chloé</td>
-                    <td>Données de démonstration, images produits, tests et préparation du rapport.</td>
+                    <td>Chlo&eacute;</td>
+                    <td>Donn&eacute;es de d&eacute;monstration, images produits, tests et pr&eacute;paration du rapport.</td>
                 </tr>
             </tbody>
         </table>
 
-        <h2>4. Captures d’écran à insérer</h2>
-        <h3>Connexion</h3>
-        <div class="placeholder">Insérer ici la capture de la page de connexion</div>
+        <h2>4. Captures d&rsquo;&eacute;cran</h2>
+        <div class="capture-grid">
+            <figure>
+                <img src="screenshots/01-login-page.png" alt="Capture de la page de connexion">
+                <figcaption>Page de connexion client.</figcaption>
+            </figure>
 
-        <h3>Catalogue</h3>
-        <div class="placeholder">Insérer ici la capture du catalogue</div>
+            <figure>
+                <img src="screenshots/02-catalogue-client.png" alt="Capture du catalogue">
+                <figcaption>Catalogue principal avec les articles, images, prix et stock.</figcaption>
+            </figure>
 
-        <h3>Achat d’un article</h3>
-        <div class="placeholder">Insérer ici la capture avant ou pendant l’achat</div>
+            <figure>
+                <img src="screenshots/03-achat-page.png" alt="Capture d'achat d'un article">
+                <figcaption>Page d&rsquo;achat avec choix de la quantit&eacute;.</figcaption>
+            </figure>
 
-        <h3>Stock après achat</h3>
-        <div class="placeholder">Insérer ici la capture montrant la baisse du stock</div>
+            <figure>
+                <img src="screenshots/04-stock-apres-achat.png" alt="Capture du stock après achat">
+                <figcaption>V&eacute;rification que le stock diminue apr&egrave;s l&rsquo;achat.</figcaption>
+            </figure>
 
-        <h3>Gestion administrateur</h3>
-        <div class="placeholder">Insérer ici la capture de l’interface admin ou de la gestion des articles</div>
+            <figure>
+                <img src="screenshots/05-gestion-admin.png" alt="Capture de gestion administrateur">
+                <figcaption>Interface de gestion administrateur pour ajouter, modifier ou supprimer un article.</figcaption>
+            </figure>
+        </div>
 
-        <h2>5. Données techniques</h2>
+        <h2>5. Donn&eacute;es techniques</h2>
         <ul>
             <li>Framework : Django</li>
-            <li>Base de données : SQLite</li>
+            <li>Base de donn&eacute;es : SQLite</li>
             <li>Langages : Python, HTML, CSS, JavaScript</li>
-            <li>Comptes de démonstration : <strong>admin / admin123</strong> et <strong>client1 / client123</strong></li>
+            <li>Comptes de d&eacute;monstration : <strong>admin / admin123</strong> et <strong>client1 / client123</strong></li>
         </ul>
 
         <h2>6. Conclusion</h2>
         <p>
-            Ce projet nous a permis de mettre en pratique la création d’une application web complète avec Django,
-            la gestion des utilisateurs, la manipulation d’une base de données SQL et la construction d’une interface
-            utilisateur orientée e-commerce.
+            Ce projet nous a permis de mettre en pratique la cr&eacute;ation d&rsquo;une application web compl&egrave;te avec Django,
+            la gestion des utilisateurs, la manipulation d&rsquo;une base de donn&eacute;es SQL et la construction d&rsquo;une interface
+            utilisateur orient&eacute;e e-commerce.
         </p>
 
         <div class="note">
-            Astuce : ouvrez ce fichier dans un navigateur puis utilisez “Imprimer &gt; Enregistrer en PDF”
-            pour produire rapidement le document demandé.
+            Astuce : ouvrez ce fichier dans un navigateur puis utilisez &ldquo;Imprimer &gt; Enregistrer en PDF&rdquo;
+            pour produire rapidement le document demand&eacute;.
         </div>
     </div>
 </body>
