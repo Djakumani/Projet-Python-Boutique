@@ -1,0 +1,70 @@
+{% extends "boutique/base.html" %}
+{% load static %}
+
+{% block title %}Cozy Wardrobe — Accueil{% endblock %}
+
+{% block content %}
+<!-- carrousel hero -->
+<div class="hero-carousel">
+    <div class="hero-track">
+        <div class="hero-slide hero-slide-1">
+            <h1>Nouvelle Collection</h1>
+            <p>Des essentiels pensés pour le quotidien</p>
+            <a href="{% url 'catalogue' %}" class="btn btn-primary" style="width:auto; padding:14px 48px;">Découvrir</a>
+        </div>
+        <div class="hero-slide hero-slide-2">
+            <h1>Qualité Premium</h1>
+            <p>Des matières sélectionnées avec soin</p>
+            <a href="{% url 'catalogue' %}" class="btn btn-white" style="width:auto; padding:14px 48px;">Explorer</a>
+        </div>
+        <div class="hero-slide hero-slide-3">
+            <h1>Offres du moment</h1>
+            <p>Profitez de nos meilleurs prix</p>
+            <a href="{% url 'catalogue' %}" class="btn btn-white" style="width:auto; padding:14px 48px;">En profiter</a>
+        </div>
+    </div>
+    <div class="hero-indicators">
+        <div class="hero-indicator active"></div>
+        <div class="hero-indicator"></div>
+        <div class="hero-indicator"></div>
+    </div>
+</div>
+
+<!-- articles en vedette -->
+<section class="products-section">
+    <h2>En vedette</h2>
+
+    {% if articles %}
+    <div class="products-grid">
+        {% for article in articles %}
+        <div class="product-card">
+            <a href="{% if user.is_authenticated and article.en_stock %}{% url 'acheter' article.id %}{% else %}{% url 'catalogue' %}{% endif %}">
+                <div class="product-card-image">
+                    {% if article.est_image %}
+                        <img src="{% static 'img/' %}{{ article.representation }}" alt="{{ article.designation }}">
+                    {% else %}
+                        <span class="no-image">{{ article.representation }}</span>
+                    {% endif %}
+                </div>
+            </a>
+            <div class="product-card-info">
+                <div class="product-card-name">{{ article.designation }}</div>
+                <div class="product-card-price">{{ article.prix_unitaire }} €</div>
+                {% if article.en_stock %}
+                    <div class="product-card-stock stock-available">En stock</div>
+                {% else %}
+                    <div class="product-card-stock stock-out">Rupture de stock</div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div style="text-align:center; margin-top:40px;">
+        <a href="{% url 'catalogue' %}" class="btn btn-outline" style="width:auto; padding:14px 48px;">
+            Voir toute la collection
+        </a>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

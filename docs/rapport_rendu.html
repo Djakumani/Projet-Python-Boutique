@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport Projet Boutique Django</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            margin: 0;
+            padding: 32px;
+            color: #1f2937;
+            background: #f5f7fb;
+        }
+        .page {
+            max-width: 960px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px 48px;
+            box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+        }
+        h1, h2, h3 {
+            color: #111827;
+        }
+        h1 {
+            margin-top: 0;
+            font-size: 32px;
+        }
+        h2 {
+            margin-top: 32px;
+            font-size: 22px;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 8px;
+        }
+        p, li {
+            line-height: 1.6;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+        th, td {
+            border: 1px solid #d1d5db;
+            padding: 10px 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background: #f3f4f6;
+        }
+        .placeholder {
+            border: 2px dashed #9ca3af;
+            border-radius: 12px;
+            min-height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f9fafb;
+            color: #6b7280;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+        .meta {
+            color: #4b5563;
+        }
+        .note {
+            margin-top: 12px;
+            padding: 14px 16px;
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .page {
+                box-shadow: none;
+                max-width: none;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1>Rapport du projet Django de vente en ligne</h1>
+        <p class="meta">Cours : Management des données et innovation</p>
+        <p class="meta">Projet : Boutique en ligne de vêtements avec Django et SQLite</p>
+
+        <h2>1. Objectif du projet</h2>
+        <p>
+            Le but du projet est de développer un site de vente en ligne avec Django. Le site distingue
+            deux types d’utilisateurs : les administrateurs et les clients.
+        </p>
+
+        <h2>2. Fonctionnalités réalisées</h2>
+        <ul>
+            <li>Catalogue des articles avec nom, représentation, stock, prix et catégories.</li>
+            <li>Connexion et inscription des clients.</li>
+            <li>Achat d’une quantité donnée avec mise à jour automatique du stock.</li>
+            <li>Gestion administrateur : ajout, modification et suppression des articles.</li>
+            <li>Affichage d’images statiques pour les produits quand une image est disponible.</li>
+        </ul>
+
+        <h2>3. Répartition du travail</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Membre</th>
+                    <th>Contribution principale</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Zeinabou</td>
+                    <td>Initialisation du projet Django, configuration générale, intégration finale des contributions et vérifications.</td>
+                </tr>
+                <tr>
+                    <td>Assia</td>
+                    <td>Modèle Article, base de données, catégories, administration et structure des données.</td>
+                </tr>
+                <tr>
+                    <td>Awa</td>
+                    <td>Logique d’achat, contrôle du stock, formulaires et vues backend.</td>
+                </tr>
+                <tr>
+                    <td>Alexis</td>
+                    <td>Templates HTML, CSS, JavaScript, interface de navigation et rendu visuel.</td>
+                </tr>
+                <tr>
+                    <td>Chloé</td>
+                    <td>Données de démonstration, images produits, tests et préparation du rapport.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>4. Captures d’écran à insérer</h2>
+        <h3>Connexion</h3>
+        <div class="placeholder">Insérer ici la capture de la page de connexion</div>
+
+        <h3>Catalogue</h3>
+        <div class="placeholder">Insérer ici la capture du catalogue</div>
+
+        <h3>Achat d’un article</h3>
+        <div class="placeholder">Insérer ici la capture avant ou pendant l’achat</div>
+
+        <h3>Stock après achat</h3>
+        <div class="placeholder">Insérer ici la capture montrant la baisse du stock</div>
+
+        <h3>Gestion administrateur</h3>
+        <div class="placeholder">Insérer ici la capture de l’interface admin ou de la gestion des articles</div>
+
+        <h2>5. Données techniques</h2>
+        <ul>
+            <li>Framework : Django</li>
+            <li>Base de données : SQLite</li>
+            <li>Langages : Python, HTML, CSS, JavaScript</li>
+            <li>Comptes de démonstration : <strong>admin / admin123</strong> et <strong>client1 / client123</strong></li>
+        </ul>
+
+        <h2>6. Conclusion</h2>
+        <p>
+            Ce projet nous a permis de mettre en pratique la création d’une application web complète avec Django,
+            la gestion des utilisateurs, la manipulation d’une base de données SQL et la construction d’une interface
+            utilisateur orientée e-commerce.
+        </p>
+
+        <div class="note">
+            Astuce : ouvrez ce fichier dans un navigateur puis utilisez “Imprimer &gt; Enregistrer en PDF”
+            pour produire rapidement le document demandé.
+        </div>
+    </div>
+</body>
+</html>

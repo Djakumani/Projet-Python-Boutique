@@ -1,0 +1,58 @@
+{% extends "boutique/base.html" %}
+
+{% block title %}Gestion — Cozy Wardrobe{% endblock %}
+
+{% block content %}
+<div class="admin-page">
+    <div class="admin-header">
+        <h1>Gestion des articles</h1>
+        <a href="{% url 'ajouter_article' %}" class="btn btn-primary btn-small">+ Ajouter</a>
+    </div>
+
+    {% if articles %}
+    <div class="admin-table-container">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Désignation</th>
+                    <th>Représentation</th>
+                    <th>Stock</th>
+                    <th>Prix</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in articles %}
+                <tr>
+                    <td><strong>{{ article.designation }}</strong></td>
+                    <td>
+                        {% if article.est_image %}
+                            🖼 {{ article.representation }}
+                        {% else %}
+                            {{ article.representation|truncatechars:40 }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if article.en_stock %}
+                            <span class="stock-available">{{ article.quantite_disponible }}</span>
+                        {% else %}
+                            <span class="stock-out">0</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ article.prix_unitaire }} €</td>
+                    <td>
+                        <div class="admin-actions">
+                            <a href="{% url 'modifier_article' article.id %}" class="btn btn-outline btn-small">Modifier</a>
+                            <a href="{% url 'supprimer_article' article.id %}" class="btn btn-danger btn-small">Supprimer</a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="admin-empty">Aucun article. Cliquez sur « + Ajouter » pour commencer.</div>
+    {% endif %}
+</div>
+{% endblock %}

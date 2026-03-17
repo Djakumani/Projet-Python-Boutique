@@ -1,0 +1,32 @@
+{% extends "boutique/base.html" %}
+
+{% block title %}Inscription — Cozy Wardrobe{% endblock %}
+
+{% block content %}
+<div class="form-page">
+    <h1>Créer un compte</h1>
+    <div class="form-card">
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <div class="help-text">{{ field.help_text }}</div>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <div class="form-submit">
+                <button type="submit" class="btn btn-primary">S'inscrire</button>
+            </div>
+        </form>
+    </div>
+    <div class="form-footer">
+        Déjà un compte ? <a href="{% url 'login' %}">Se connecter</a>
+    </div>
+</div>
+{% endblock %}

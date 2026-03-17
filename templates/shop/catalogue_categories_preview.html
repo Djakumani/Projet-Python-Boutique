@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozy Wardrobe — Aperçu Version Catégories</title>
+    <style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#E0E4E7;color:#111;min-height:100vh;font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:#111;text-decoration:none}
+main{flex:1}
+.animate-on-scroll{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.animate-on-scroll.visible{opacity:1;transform:translateY(0)}
+.navbar{background:#E0E4E7;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(184,199,221,.4)}
+.navbar-brand{font-size:24px;font-weight:900;letter-spacing:6px;text-transform:uppercase;color:#111;text-shadow:1px 1px 2px #fff,-1px -1px 2px #b8c7dd;transition:color .3s}
+.navbar-brand:hover{color:#C0392B}
+.navbar-links{display:flex;align-items:center;gap:8px}
+.navbar-links a{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#646464;padding:10px 18px;border-radius:12px;transition:all .25s;background:#E0E4E7;box-shadow:3px 3px 6px #b8c7dd,-3px -3px 6px #fff}
+.navbar-links a:hover{box-shadow:inset 3px 3px 6px #b8c7dd,inset -3px -3px 6px #fff;color:#111}
+.navbar-user{font-size:11px;color:#646464;letter-spacing:1.5px;text-transform:uppercase;padding:10px 18px}
+.badge-admin{background:#C0392B;color:#FFF;font-size:9px;padding:3px 10px;border-radius:20px;letter-spacing:1.5px;margin-left:6px}
+.messages{max-width:1200px;margin:20px auto 0;padding:0 40px}
+.alert{padding:14px 40px 14px 20px;margin-bottom:12px;font-size:13px;border-radius:16px;transition:opacity .3s,transform .3s;position:relative}
+.alert-success{background:#E0E4E7;color:#2D7D2D;box-shadow:inset 4px 3px 3px 0 #b8c7dd,inset -2px -4px 4px 0 #fff;border-left:4px solid #2D7D2D}
+.alert-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:18px;color:#999;background:none;border:none}
+.hero-carousel{width:100%;height:70vh;min-height:400px;max-height:600px;overflow:hidden;position:relative}
+.hero-track{display:flex;flex-direction:column;height:100%;transition:transform .8s cubic-bezier(.65,0,.35,1)}
+.hero-slide{min-height:100%;width:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:40px;text-align:center}
+.hero-slide-1{background:linear-gradient(135deg,#d5dbe0 0%,#E0E4E7 50%,#e8eaed 100%)}
+.hero-slide-2{background:linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 100%);color:#FFF}
+.hero-slide-3{background:linear-gradient(135deg,#C0392B 0%,#e74c3c 100%);color:#FFF}
+.hero-slide h1{font-size:42px;font-weight:200;letter-spacing:10px;text-transform:uppercase;margin-bottom:16px}
+.hero-slide p{font-size:14px;letter-spacing:4px;text-transform:uppercase;opacity:.7;margin-bottom:32px}
+.hero-indicators{position:absolute;right:30px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:10}
+.hero-indicator{width:10px;height:10px;border-radius:50%;background:rgba(0,0,0,.2);cursor:pointer;transition:all .3s}
+.hero-indicator.active{background:#111;transform:scale(1.3);box-shadow:0 0 8px rgba(0,0,0,.2)}
+.products-section{max-width:1200px;margin:0 auto;padding:40px 40px 60px}
+.products-section h2{font-size:14px;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:32px;color:#646464}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+@media(max-width:900px){.products-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.navbar{flex-wrap:wrap;gap:10px;padding:12px 20px}.navbar-links{flex-wrap:wrap;justify-content:flex-end;gap:6px}.navbar-links a{font-size:10px;padding:8px 12px}.navbar-user{font-size:10px;padding:8px 12px}}
+@media(max-width:560px){.products-grid{grid-template-columns:1fr}.navbar{padding:12px 16px}.navbar-brand{font-size:18px;letter-spacing:4px}.products-section{padding:20px 20px 40px}.hero-carousel{height:50vh;min-height:300px}.hero-slide h1{font-size:26px;letter-spacing:4px}}
+.product-card{background:#E0E4E7;border-radius:20px;overflow:hidden;box-shadow:6px 6px 14px #b8c7dd,-6px -6px 14px #fff;transition:all .3s}
+.product-card:hover{box-shadow:8px 8px 20px #b8c7dd,-8px -8px 20px #fff;transform:translateY(-4px)}
+.product-card-image{width:100%;aspect-ratio:3/4;background:#d4d8db;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.product-card-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.25,0,.25,1)}
+.product-card:hover .product-card-image img{transform:scale(1.08)}
+.product-card-image::after{content:'VOIR LE PRODUIT';position:absolute;bottom:0;left:0;right:0;padding:16px;background:linear-gradient(transparent,rgba(0,0,0,.5));color:#FFF;font-size:10px;letter-spacing:3px;text-align:center;opacity:0;transform:translateY(10px);transition:all .3s}
+.product-card:hover .product-card-image::after{opacity:1;transform:translateY(0)}
+.product-card-image .no-image{font-size:12px;color:#888;text-align:center;padding:24px;font-style:italic;line-height:1.6}
+.product-card-info{padding:18px 20px 22px}
+.product-card-name{font-size:13px;font-weight:500;margin-bottom:6px;letter-spacing:.5px}
+.product-card-price{font-size:16px;font-weight:700;margin-bottom:8px}
+.product-card-stock{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.stock-available{color:#2D7D2D}
+.stock-out{color:#C0392B}
+.btn{display:inline-block;padding:13px 32px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-align:center;border:none;cursor:pointer;transition:all .25s;border-radius:14px;font-family:inherit;position:relative;overflow:hidden}
+.btn-primary{background:#111;color:#FFF;width:100%;box-shadow:4px 4px 10px #b8c7dd,-4px -4px 10px #fff}
+.btn-primary:hover{background:#222;transform:translateY(1px)}
+.btn-white{background:#FFF;color:#111;box-shadow:4px 4px 10px rgba(0,0,0,.15)}
+.btn-outline{background:#E0E4E7;color:#111;box-shadow:4px 4px 10px #b8c7dd,-4px -4px 10px #fff}
+.btn-outline:hover{box-shadow:inset 4px 3px 3px 0 #b8c7dd,inset -2px -4px 4px 0 #fff}
+.btn-disabled{background:#d4d8db;color:#999;cursor:not-allowed;width:100%}
+.btn-ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.4);width:100px;height:100px;margin-top:-50px;margin-left:-50px;animation:ripple .6s ease-out;pointer-events:none}
+@keyframes ripple{from{transform:scale(0);opacity:1}to{transform:scale(4);opacity:0}}
+.category-tabs{display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap}
+.category-tab{padding:10px 24px;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#646464;border-radius:12px;background:#E0E4E7;box-shadow:3px 3px 6px #b8c7dd,-3px -3px 6px #fff;transition:all .25s;cursor:pointer}
+.category-tab:hover{box-shadow:inset 3px 3px 6px #b8c7dd,inset -3px -3px 6px #fff;color:#111}
+.category-tab.active{box-shadow:inset 3px 3px 6px #b8c7dd,inset -3px -3px 6px #fff;color:#111;font-weight:700}
+.footer{background:#1a1a1a;color:#777;text-align:center;padding:28px 40px;font-size:10px;letter-spacing:2.5px;text-transform:uppercase}
+.page-sep{text-align:center;padding:50px 40px 10px;margin-top:30px;border-top:2px dashed #c5cad0}
+.page-sep span{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#C0392B;background:#E0E4E7;padding:0 16px}
+.cat-label{display:inline-block;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#999;margin-top:4px}
+    </style>
+</head>
+<body>
+
+<!-- ===== PAGE ACCUEIL ===== -->
+<nav class="navbar">
+    <a href="#" class="navbar-brand">Cozy Wardrobe</a>
+    <div class="navbar-links">
+        <a href="#collection">Collection</a>
+        <a href="#homme">Homme</a>
+        <a href="#femme">Femme</a>
+        <a href="#enfant">Enfant</a>
+        <span class="navbar-user">client1</span>
+        <a href="#">Déconnexion</a>
+    </div>
+</nav>
+
+<div class="hero-carousel">
+    <div class="hero-track">
+        <div class="hero-slide hero-slide-1">
+            <h1>Nouvelle Collection</h1>
+            <p>Des essentiels pensés pour le quotidien</p>
+            <a href="#collection" class="btn btn-primary" style="width:auto;padding:14px 48px;">Découvrir</a>
+        </div>
+        <div class="hero-slide hero-slide-2">
+            <h1>Qualité Premium</h1>
+            <p>Des matières sélectionnées avec soin</p>
+            <a href="#collection" class="btn btn-white" style="width:auto;padding:14px 48px;">Explorer</a>
+        </div>
+        <div class="hero-slide hero-slide-3">
+            <h1>Offres du moment</h1>
+            <p>Profitez de nos meilleurs prix</p>
+            <a href="#collection" class="btn btn-white" style="width:auto;padding:14px 48px;">En profiter</a>
+        </div>
+    </div>
+    <div class="hero-indicators">
+        <div class="hero-indicator active"></div>
+        <div class="hero-indicator"></div>
+        <div class="hero-indicator"></div>
+    </div>
+</div>
+
+<section class="products-section">
+    <h2>En vedette</h2>
+    <div class="products-grid">
+        <div class="product-card animate-on-scroll" style="transition-delay:.0s">
+            <div class="product-card-image"><span class="no-image">T-shirt essentiel en coton supima, coupe regular</span></div>
+            <div class="product-card-info">
+                <div class="product-card-name">T-shirt col rond coton</div>
+                <div class="product-card-price">12.90 €</div>
+                <div class="product-card-stock stock-available">En stock</div>
+                <div class="cat-label">Homme</div>
+            </div>
+        </div>
+        <div class="product-card animate-on-scroll" style="transition-delay:.1s">
+            <div class="product-card-image"><span class="no-image">Robe midi fluide à motif floral, coupe évasée</span></div>
+            <div class="product-card-info">
+                <div class="product-card-name">Robe fluide imprimée</div>
+                <div class="product-card-price">39.90 €</div>
+                <div class="product-card-stock stock-available">En stock</div>
+                <div class="cat-label">Femme</div>
+            </div>
+        </div>
+        <div class="product-card animate-on-scroll" style="transition-delay:.2s">
+            <div class="product-card-image"><span class="no-image">T-shirt coton bio avec motif dinosaure, tailles 4-12 ans</span></div>
+            <div class="product-card-info">
+                <div class="product-card-name">T-shirt imprimé dinosaure</div>
+                <div class="product-card-price">9.90 €</div>
+                <div class="product-card-stock stock-available">En stock</div>
+                <div class="cat-label">Enfant</div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align:center; margin-top:40px;">
+        <a href="#collection" class="btn btn-outline" style="width:auto; padding:14px 48px;">Voir toute la collection</a>
+    </div>
+</section>
+
+
+<!-- ===== COLLECTION COMPLETE ===== -->
+<div class="page-sep" id="collection"><span>Collection — Toutes catégories</span></div>
+
+<section class="products-section">
+    <h2>Toute la collection</h2>
+
+    <div class="category-tabs">
+        <span class="category-tab active" onclick="filterCards('all', this)">Tout</span>
+        <span class="category-tab" onclick="filterCards('homme', this)">Homme</span>
+        <span class="category-tab" onclick="filterCards('femme', this)">Femme</span>
+        <span class="category-tab" onclick="filterCards('enfant', this)">Enfant</span>
+    </div>
+
+    <div class="products-grid" id="filterable-grid">
+        <!-- homme -->
+        <div class="product-card animate-on-scroll" data-cat="homme" style="transition-delay:.0s">
+            <div class="product-card-image"><span class="no-image">T-shirt essentiel en coton supima, coupe regular</span></div>
+            <div class="product-card-info">
+                <div class="product-card-name">T-shirt col rond coton</div>
+                <div class="product-card-price">12.90 €</div>
+                <div class="product-card-stock stock-available">En stock (50)</div>
+                <div class="cat-label">Homme</div>
+                <div class="product-card-action"><a href="#" class="btn btn-primary">Ajouter au panier</a></div>
+            </div>
+        </div>
+        <div class="product-card animate-on-scroll" data-cat="homme" style="transition-delay:.1s">
+            <div class="product-card-image" style="background:#d0c8c0;"><span class="no-image">📷 chemise.png</span></div>
+            <div class="product-card-info">
+                <div class="product-card-name">Chemise Oxford slim</div>
+                <div class="product-card-price">29.90 €</div>
+                <div class="product-card-stock stock-available">En stock (30)</div>
+                <div class="cat-label">Homme</div>
+                <div class="product-card-action"><a href="#" class="btn btn-primary">Ajouter au panier</a></div>
+            </div>
+        </div>
+        <div class="product-card animate-on-scroll" data-cat="homme" style="transition-delay:.2s">
+            <div class="product-card-image"><span class="no-image">Jean brut selvedge, coupe droite, denim japonais</span></div>
+            <div class="product-card-info">
+                <div class="product-card-name">Jean selvedge regular</div>
+                <div class="product-card-price">59.90 €</div>
+                <div class="product-card-stock stock-available">En stock (20)</div>
+                <div class="cat-label">Homme</div>
+                <div class="product-card-action"><a href="#" class="btn btn-primary">Ajouter au panier</a></div>
+            </div>
+        </div>
+        <!-- femme -->
+        <div class="product-card animate-on-scroll" data-cat="femme" style="transition-delay:.0s">
+            <div class="product-card-image"><span class="no-image">Robe midi fluide à motif floral, coupe évasée</span></div>
+            <div class="product-card-info">
+                <div class="product-card-name">Robe fluide imprimée</div>
+                <div class="product-card-price">39.90 €</div>
+                <div class="product-card-stock stock-available">En stock (18)</div>
+                <div class="cat-label">Femme</div>
+                <div class="product-card-action"><a href="#" class="btn btn-primary">Ajouter au panier</a></div>
+            </div>
+        </div>
+        <div class="product-card animate-on-scroll" data-cat="femme" style="transition-delay:.1s">
+            <div class="product-card-image" style="background:#c8cdd2;"><span class="no-image">📷 veste.png</span></div>
+            <div class="product-card-info">
+                <div class="product-card-name">Veste légère zippée</div>
+                <div class="product-card-price">49.90 €</div>
+                <div class="product-card-stock stock-available">En stock (15)</div>
+                <div class="cat-label">Femme</div>
+                <div class="product-card-action"><a href="#" class="btn btn-primary">Ajouter au panier</a></div>
+            </div>
+        </div>
+        <div class="product-card animate-on-scroll" data-cat="femme" style="transition-delay:.2s">
+            <div class="product-card-image"><span class="no-image">Pull en laine mérinos extra-fine, léger et chaud</span></div>
+            <div class="product-card-info">
+                <div class="product-card-name">Pull mérinos col V</div>
+                <div class="product-card-price">39.90 €</div>
+                <div class="product-card-stock stock-out">Rupture de stock</div>
+                <div class="cat-label">Femme</div>
+                <div class="product-card-action"><span class="btn btn-disabled">Indisponible</span></div>
+            </div>
+        </div>
+        <!-- enfant -->
+        <div class="product-card animate-on-scroll" data-cat="enfant" style="transition-delay:.0s">
+            <div class="product-card-image"><span class="no-image">T-shirt coton bio avec motif dinosaure, tailles 4-12 ans</span></div>
+            <div class="product-card-info">
+                <div class="product-card-name">T-shirt imprimé dinosaure</div>
+                <div class="product-card-price">9.90 €</div>
+                <div class="product-card-stock stock-available">En stock (40)</div>
+                <div class="cat-label">Enfant</div>
+                <div class="product-card-action"><a href="#" class="btn btn-primary">Ajouter au panier</a></div>
+            </div>
+        </div>
+        <div class="product-card animate-on-scroll" data-cat="enfant" style="transition-delay:.1s">
+            <div class="product-card-image"><span class="no-image">Chino coupe slim en coton stretch, tailles 6-14 ans</span></div>
+            <div class="product-card-info">
+                <div class="product-card-name">Pantalon chino stretch</div>
+                <div class="product-card-price">19.90 €</div>
+                <div class="product-card-stock stock-available">En stock (25)</div>
+                <div class="cat-label">Enfant</div>
+                <div class="product-card-action"><a href="#" class="btn btn-primary">Ajouter au panier</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<br><br>
+<footer class="footer">Cozy Wardrobe &copy; 2026 — Tous droits réservés</footer>
+
+<script>
+// carrousel
+const hero=document.querySelector('.hero-carousel');if(hero){const slides=hero.querySelectorAll('.hero-slide');const indicators=hero.querySelectorAll('.hero-indicator');let current=0,autoplay;function goTo(i){current=i;hero.querySelector('.hero-track').style.transform=`translateY(-${i*100}%)`;indicators.forEach((ind,j)=>ind.classList.toggle('active',j===i))}function next(){goTo((current+1)%slides.length)}function start(){autoplay=setInterval(next,4000)}function stop(){clearInterval(autoplay)}indicators.forEach((ind,i)=>ind.addEventListener('click',()=>{goTo(i);stop();start()}));hero.addEventListener('mouseenter',stop);hero.addEventListener('mouseleave',start);let touchY=0;hero.addEventListener('touchstart',e=>{touchY=e.touches[0].clientY;stop()},{passive:true});hero.addEventListener('touchend',e=>{const d=touchY-e.changedTouches[0].clientY;if(Math.abs(d)>50){d>0&&current<slides.length-1?goTo(current+1):d<0&&current>0?goTo(current-1):null}start()},{passive:true});start()}
+
+// apparition au scroll
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.animate-on-scroll').forEach(el=>obs.observe(el));
+
+// ripple
+document.querySelectorAll('.product-card-action .btn-primary').forEach(btn=>{btn.addEventListener('click',function(e){const r=document.createElement('span');r.classList.add('btn-ripple');const rect=this.getBoundingClientRect();r.style.left=`${e.clientX-rect.left}px`;r.style.top=`${e.clientY-rect.top}px`;this.appendChild(r);setTimeout(()=>r.remove(),600)})});
+
+// filtre par categorie (apercu seulement)
+function filterCards(cat, clickedTab) {
+    document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+    clickedTab.classList.add('active');
+    document.querySelectorAll('#filterable-grid .product-card').forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) {
+            card.style.display = '';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+</script>
+</body>
+</html>

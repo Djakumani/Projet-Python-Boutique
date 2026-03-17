@@ -1,0 +1,35 @@
+{% extends "boutique/base.html" %}
+{% load static %}
+
+{% block title %}{{ article.designation }} — Cozy Wardrobe{% endblock %}
+
+{% block content %}
+<div class="purchase-page">
+    <div class="purchase-image">
+        {% if article.est_image %}
+            <img src="{% static 'img/' %}{{ article.representation }}" alt="{{ article.designation }}">
+        {% else %}
+            <span class="no-image">{{ article.representation }}</span>
+        {% endif %}
+    </div>
+    <div class="purchase-details">
+        <h1>{{ article.designation }}</h1>
+        <div class="purchase-price">{{ article.prix_unitaire }} €</div>
+        <div class="purchase-stock">{{ article.quantite_disponible }} disponible(s)</div>
+
+        <form method="post" class="purchase-form">
+            {% csrf_token %}
+            <label for="id_quantite">Quantité</label>
+            {{ form.quantite }}
+            <span class="help-text">Maximum : {{ article.quantite_disponible }}</span>
+            <div class="purchase-actions">
+                <button type="submit" class="btn btn-red">Acheter maintenant</button>
+            </div>
+        </form>
+
+        <div class="purchase-back">
+            <a href="{% url 'catalogue' %}">&larr; Retour à la collection</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

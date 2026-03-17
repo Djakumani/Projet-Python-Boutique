@@ -1,0 +1,58 @@
+{% extends "boutique/base.html" %}
+{% load static %}
+
+{% block title %}{{ titre }} — Cozy Wardrobe{% endblock %}
+
+{% block content %}
+<section class="products-section">
+    <h2>{{ titre }}</h2>
+
+    <!-- onglets de categories -->
+    <div class="category-tabs">
+        <a href="{% url 'catalogue' %}" class="category-tab {% if not categorie_active %}active{% endif %}">Tout</a>
+        <a href="{% url 'catalogue_homme' %}" class="category-tab {% if categorie_active == 'homme' %}active{% endif %}">Homme</a>
+        <a href="{% url 'catalogue_femme' %}" class="category-tab {% if categorie_active == 'femme' %}active{% endif %}">Femme</a>
+        <a href="{% url 'catalogue_enfant' %}" class="category-tab {% if categorie_active == 'enfant' %}active{% endif %}">Enfant</a>
+    </div>
+
+    {% if articles %}
+    <div class="products-grid">
+        {% for article in articles %}
+        <div class="product-card">
+            <a href="{% if user.is_authenticated and article.en_stock %}{% url 'acheter' article.id %}{% else %}#{% endif %}">
+                <div class="product-card-image">
+                    {% if article.est_image %}
+                        <img src="{% static 'img/' %}{{ article.representation }}" alt="{{ article.designation }}">
+                    {% else %}
+                        <span class="no-image">{{ article.representation }}</span>
+                    {% endif %}
+                </div>
+            </a>
+            <div class="product-card-info">
+                <div class="product-card-name">{{ article.designation }}</div>
+                <div class="product-card-price">{{ article.prix_unitaire }} €</div>
+                {% if article.en_stock %}
+                    <div class="product-card-stock stock-available">En stock ({{ article.quantite_disponible }})</div>
+                {% else %}
+                    <div class="product-card-stock stock-out">Rupture de stock</div>
+                {% endif %}
+                <div class="product-card-action">
+                    {% if user.is_authenticated %}
+                        {% if article.en_stock %}
+                            <a href="{% url 'acheter' article.id %}" class="btn btn-primary">Ajouter au panier</a>
+                        {% else %}
+                            <span class="btn btn-disabled">Indisponible</span>
+                        {% endif %}
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-outline">Connexion pour acheter</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="admin-empty">Aucun article dans cette catégorie.</div>
+    {% endif %}
+</section>
+{% endblock %}
