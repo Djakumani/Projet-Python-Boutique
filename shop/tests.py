@@ -18,14 +18,14 @@ class BoutiqueTests(TestCase):
         )
         self.article_homme = Article.objects.create(
             designation="Chemise Oxford slim",
-            representation="catalogue_assets/homme/hauts/chemise_slim_fit/chemise_slim_fit1.png",
+            representation="catalogue_assets/homme/hauts/chemise_slim_fit/chemise_oxford_slim.png",
             quantite_disponible=5,
             prix_unitaire="29.90",
             categorie="homme",
         )
         self.article_femme = Article.objects.create(
             designation="Robe midi elegante",
-            representation="catalogue_assets/femme/robes/robe_midi_elegante/gemini_generated_image_pmembppmembppmem.png",
+            representation="catalogue_assets/femme/robes/robe_midi_elegante/robe_fluide_imprimee.png",
             quantite_disponible=3,
             prix_unitaire="39.90",
             categorie="femme",
@@ -110,7 +110,7 @@ class BoutiqueTests(TestCase):
             reverse("ajouter_article"),
             {
                 "designation": "Sac a main femme",
-                "representation": "catalogue_assets/femme/accessoires/sac_a_main_femme/gemini_generated_image_olruw4olruw4olru.png",
+                "representation": "catalogue_assets/femme/accessoires/sac_a_main_femme/sac_a_main_femme.png",
                 "quantite_disponible": 7,
                 "prix_unitaire": "59.90",
                 "categorie": "femme",

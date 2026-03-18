@@ -32,3 +32,7 @@ class Article(models.Model):
     @property
     def en_stock(self):
         return self.quantite_disponible > 0
+
+    @property
+    def nom_representation(self):
+        return self.representation.rsplit("/", 1)[-1]

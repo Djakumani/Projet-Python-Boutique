@@ -1,6 +1,6 @@
 {% extends "boutique/base.html" %}
 
-{% block title %}Gestion — Cozy Wardrobe{% endblock %}
+{% block title %}Gestion &mdash; Cozy Wardrobe{% endblock %}
 
 {% block content %}
 <div class="admin-page">
@@ -14,8 +14,8 @@
         <table class="admin-table">
             <thead>
                 <tr>
-                    <th>Désignation</th>
-                    <th>Représentation</th>
+                    <th>D&eacute;signation</th>
+                    <th>Repr&eacute;sentation</th>
                     <th>Stock</th>
                     <th>Prix</th>
                     <th>Actions</th>
@@ -27,7 +27,7 @@
                     <td><strong>{{ article.designation }}</strong></td>
                     <td>
                         {% if article.est_image %}
-                            🖼 {{ article.representation }}
+                            Image : {{ article.nom_representation }}
                         {% else %}
                             {{ article.representation|truncatechars:40 }}
                         {% endif %}
@@ -39,7 +39,7 @@
                             <span class="stock-out">0</span>
                         {% endif %}
                     </td>
-                    <td>{{ article.prix_unitaire }} €</td>
+                    <td>{{ article.prix_unitaire }} &euro;</td>
                     <td>
                         <div class="admin-actions">
                             <a href="{% url 'modifier_article' article.id %}" class="btn btn-outline btn-small">Modifier</a>
@@ -52,7 +52,7 @@
         </table>
     </div>
     {% else %}
-    <div class="admin-empty">Aucun article. Cliquez sur « + Ajouter » pour commencer.</div>
+    <div class="admin-empty">Aucun article. Cliquez sur &laquo; + Ajouter &raquo; pour commencer.</div>
     {% endif %}
 </div>
 {% endblock %}
