@@ -31,7 +31,6 @@ Acces local : `http://127.0.0.1:8000/`
 - Verifier le projet : `python manage.py check`
 - Lancer les tests : `python manage.py test`
 - Regenerer les captures : `python scripts/capture_demo_screenshots.py`
-- Regenerer la presentation PowerPoint : `python scripts/generate_presentation.py`
 
 ## Structure utile
 

@@ -22,7 +22,7 @@ def wait_for_server(host: str, port: int, timeout: float = 20.0) -> None:
             if sock.connect_ex((host, port)) == 0:
                 return
         time.sleep(0.5)
-    raise RuntimeError("Le serveur Django n'a pas démarré à temps.")
+    raise RuntimeError("Le serveur Django n'a pas demarre a temps.")
 
 
 def main() -> None:
@@ -58,7 +58,7 @@ def main() -> None:
             page.screenshot(path=str(SCREENSHOTS_DIR / "02-catalogue-client.png"), full_page=True)
 
             stock_text = page.locator(".product-card-stock").first.inner_text()
-            page.locator('a.btn.btn-primary').first.click()
+            page.locator("a.btn.btn-primary").first.click()
             page.wait_for_load_state("networkidle")
             page.screenshot(path=str(SCREENSHOTS_DIR / "03-achat-page.png"), full_page=True)
 
@@ -76,8 +76,8 @@ def main() -> None:
             page.screenshot(path=str(SCREENSHOTS_DIR / "05-gestion-admin.png"), full_page=True)
 
             with open(SCREENSHOTS_DIR / "notes.txt", "w", encoding="utf-8") as fh:
-                fh.write("Stock visible avant achat (première carte): " + stock_text + "\n")
-                fh.write("Captures générées automatiquement depuis le serveur local.\n")
+                fh.write("Stock visible avant achat (premiere carte): " + stock_text + "\n")
+                fh.write("Captures generees automatiquement depuis le serveur local.\n")
 
             browser.close()
     finally:
