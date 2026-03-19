@@ -66,14 +66,14 @@ articles = [
     },
     {
         "designation": "Veste legere zippee",
-        "representation": "catalogue_assets/femme/hauts/chemise_femme_classique/chemise_femme_classique.png",
+        "representation": "catalogue_assets/femme/veste_legere_femme.png",
         "quantite_disponible": 15,
         "prix_unitaire": 49.90,
         "categorie": "femme",
     },
     {
         "designation": "Pull merinos col V",
-        "representation": "catalogue_assets/femme/hauts/t_shirt_femme_basique/t_shirt_femme_basique.png",
+        "representation": "catalogue_assets/femme/pull_merinos_femme.png",
         "quantite_disponible": 0,
         "prix_unitaire": 39.90,
         "categorie": "femme",
